@@ -90,7 +90,7 @@ The below are the Models built:
 8. Logistic Regression with and without without Hyper Parameter tuning
 
 
-##### Finally ! the Algorithm that worked magic for me - XGBoost. But there are No Free lunches . All these tree based Algorithms come with a huge tax on Processing power of your system. Since I was using personal laptop for this excercise, 
+##### Finally ! the Algorithm that worked magic for me - XGBoost. But- "there are No Free lunches" . All these tree based Algorithms come with a huge tax on Processing power of your system, especially when you are tuning them iteratively. Since I was using personal laptop for this excercise, it wasnt feasible to run too many iterations of RF, Bagging Boosting. 
 
 
 
