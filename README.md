@@ -1,5 +1,5 @@
 # GLPGDSBA_Dec21_Hackathon
-I recently participated in the Shinkansen Travel Experience - Hackathon organized by Great Learning for PG-DSBA course attendees. This is my experience with the Hackathon. It was an exciting two days event and enormous learning opportunity for like minded Machine Learning enthusiasts .
+I recently participated in the Shinkansen Travel Experience - Hackathon organized by Great Learning for PG-DSBA course attendees. It was an exciting two days event and enormous learning opportunity for like minded Machine Learning enthusiasts . Although it was an individual participation event, I named myself "Natural Intelligence" .Below is my experience with the Hackathon with some Nerdy facts on my approach.
 ## Below is the Problem Description 
 This is the problem of a Shinkansen (Bullet-Trains) of Japan. They aim to determine the relative importance of each parameter with regards to their contribution to the passenger travel experience. Provided is a random sample of individuals who travelled using their train. The on-time performance of the trains along with the passenger’s information is published in the CSV file named ‘Traveldata_train’.  These passengers were later asked to provide their feedback on various parameters related to the travel along with their overall experience. These collected details are made available in the survey report CSV labelled ‘Surveydata_train’.
 
@@ -8,6 +8,8 @@ In the survey, a passenger was explicitly asked whether they were delighted with
 The objective of this exercise is to understand which parameters play an important role in swaying passenger feedback towards a positive scale. You are provided test data containing Travel data and Survey data of passengers. Both the test data and the train data are collected at the same time and belongs to the same company.
 ### Goal:
 The goal of the problem is to predict whether a passenger was delighted considering his/her overall travel experience of traveling in Shinkansen (Bullet Train). For each passenger id in the test set, you must predict the “Overall_Experience” level.
+
+### Evaluation Criteria for the Hackathon : Accuracy metric.
 
 ### Dataset
 
@@ -90,8 +92,15 @@ The below are the Models built:
 8. Logistic Regression with and without without Hyper Parameter tuning
 
 
-##### Finally ! the Algorithm that worked magic for me - XGBoost. But- "there are No Free lunches" . All these tree based Algorithms come with a huge tax on Processing power of your system, especially when you are tuning them iteratively. Since I was using personal laptop for this excercise, it wasnt feasible to run too many iterations of RF, Bagging Boosting. 
+##### Finally ! the Algorithm that worked magic for me - XGBoost. But- "there are No Free lunches" . All these tree based Algorithms come with a huge tax on Processing power of your system, especially when you are tuning them iteratively. Since I was using personal laptop for this excercise, it wasnt feasible to run too many iterations of RF, Bagging Boosting. So I did two iterations of XGBoost with manual tuning rather than Grid Search
+The below are the parameters of XGBoost that I played around with to get the best model :
+1. colsample_bytree : This parameter determines the fraction of features that is used to train each tree. In the default model it was 1, I changed it to 0.5 to make each tree weak learner so that cummulative learning can be strong.
+2. learning_rate : This parameter tells you how quickly the model fits the residual errors by using additional base learners . Default was 0.300000012 I slowed it down to 0.1. Although its a risk when your processor is slow as the model would take smaller and more no. of steps to train in this case. But since I took this calculated risk.
+3. n_estimators: This is another parameter where I took a risk of slowing down the trainging process because more trees definitely means better cummulative learning but also means more processing resource requirements. Default was 100, I changed to 200 trees.
+4. subsample: Fraction of the training set that can be used to train each tree. Default was 1 , I chose 0.7 as I wanted each individual tree to be built only on a smaller subset and not the whole dataset.
 
+##### And Here I was ! with the model that gave me the best accuracy amongst all other Models. So I went ahead and submitted it and Bingo ! This was best my accuracy amongst all my 8 submissions! 0.95 . Ofcourse ! I would have loved to do more feature engineering or build more models to feature in that premium Top 10 spot. But I thoroughly enjoyed the experience and learnt a lot. So to all you Data Science rookies out there -" Dont wait for the Blue sky , jump in to every opportunity that you see to hone your skills " . 
 
+![image](https://user-images.githubusercontent.com/18433095/148679099-dffeb04b-d1f4-4429-a9aa-6a3de05977f9.png)
 
 ****
