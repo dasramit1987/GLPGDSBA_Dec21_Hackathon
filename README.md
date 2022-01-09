@@ -66,9 +66,10 @@ So we can already see many features which make an impact on the overall satisfac
 
 ### Next I move to the Data Processing part
 
-Both Departure Delay and Arrival Delay columns are numeric columns and have high no. of NULLs and the distribution is highliy skewed - #### hence we cannot use impute using Mean. I impute both the columns using their Median values. 
+Both Departure Delay and Arrival Delay columns are numeric columns and have high no. of NULLs and the distribution is highliy skewed - #### hence we cannot use impute using Mean. I impute both the columns using their Median values. The Median Delay is 0 which means No delay , so the business assumption here is where there is No delay value in the data, the train has been on time. But in real life this needs to be validated by domain experts. 
 Age is a numeric variable but the distribution is Normal , hence I impute Age with the Mean value. 
 All categorical variables were imputed using mode. Imputation is a very subjective issue and requires domain expertise. Here since its a hackathon and the aim is to achieve high Accuracy scores, I tried out the copy book method of imputation.
+##### One important point here is about scaling - Since this is a Survey data, already in a scale of 1-10 , and only 2 numeric variables exists, I decided not to scale the data. Moreover scaling is needed mostly for LDA, Log Regression and KNN but tree based algos work fine without scaling. Hence I took the chance of first trying without scaling and it worked well for me. But we can always try scaling the Numeric variables separately, especially when there more numeric variables.
 
 #### Next comes an important step to convert all the Categorical variables to Integers as is required by Python's sklearn library for all Machine Learning algorithms. 
 Here since, the values are Survey attributes, we need to be very sure of assigning exact same orders and hence I took the hardcoding route to assign numbers to the Survey variables instead of using Pandas Categorical converter.
@@ -79,18 +80,17 @@ Once all missing values are imputed and Categoricals converted to numeric, the d
 
 First step of model building is to split the data into train and test. I use a 70-30 random split using sklearn train test split .
 The below are the Models built:
-Naive Bayes
-KNN
-Random Forest with and without Hyper Parameter tuning
-Bagging with and without without Hyper Parameter tuning
-Adaboost with and without without Hyper Parameter tuning
-Gradient Boost with and without Hyper Parameter tuning
-LDA with and without without Hyper Parameter tuning
-Logistic Regression with and without without Hyper Parameter tuning
+1. Naive Bayes
+2. KNN
+3. Random Forest with and without Hyper Parameter tuning
+4. Bagging with and without without Hyper Parameter tuning
+5. Adaboost with and without without Hyper Parameter tuning
+6. Gradient Boost with and without Hyper Parameter tuning
+7. LDA with and without without Hyper Parameter tuning
+8. Logistic Regression with and without without Hyper Parameter tuning
 
-One important point here is about scaling - Since this is a Survey data already in a scale of 1-10 , and only 2 numeric variables exists, I decided not to scale the data. Moreover scaling is needed mostly for LDA/Log Regression but tree based algos work fine without scaling. Hence I took the chance.
 
-Finally ! the Algorithm that worked magic for me - XGBoost 
+##### Finally ! the Algorithm that worked magic for me - XGBoost. But there are No Free lunches . All these tree based Algorithms come with a huge tax on Processing power of your system. Since I was using personal laptop for this excercise, 
 
 
 
