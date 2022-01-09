@@ -81,7 +81,12 @@ Once all missing values are imputed and Categoricals converted to numeric, the d
 ### Model Building
 
 First step of model building is to split the data into train and test. I use a 70-30 random split using sklearn train test split .
-The below are the Models built:
+Then, I built the below are the Models for Classification. Now for each of these models, I tried two types of dataset - 
+      1. One with only a subset of columns that were more impactful to the Target variable as identified in EDA. 
+      2. Other with all columns. 
+Although I was getting good accuracy with the former with train data, I was getting lower than the other compettitors, when I submitted my results on Test data in the Hackathon portal. Hence I finally decided to go with all columns irrespective of their importance. 
+###### In real life probably, the model trained on a subset of important columns will be better as we dont want our model to be overfit.
+      
 1. Naive Bayes
 2. KNN
 3. Random Forest with and without Hyper Parameter tuning
